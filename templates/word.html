@@ -13,6 +13,9 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <link href="{% static 'images/favicon1.png' %}" rel="icon">
 
 <style>
@@ -111,7 +114,7 @@ body{
   }
   .asd {
     text-align: center;
-    font-family:"Times New Roman", Times, serif;;
+    font-family: 'Anton', sans-serif;
     color: rgb(12, 12, 12);
   }
 
@@ -142,16 +145,20 @@ body{
  <div class="box">
    
    <div class="vertical-middle">
-    <h2 class="asd"><strong>{{search}}</strong></h2>
+    <h2 class="asd"><strong>{{Search}}</strong></h2>
    <h3> <u>Meaning</u>  :{{meaning}}</h3>
    
    <h3> <u> Synonyms</u>: {% for synonym in synonyms %}
-       {{synonym}},
+       {% if forloop.counter <= 15 %}
+       {{ synonym }},
+       {% endif %}
        {% endfor %}</h3>
    
    
    <h3> <u>Antonyms</u> : {% for antonym in antonyms %}
+       {% if forloop.counter <= 15 %}
        {{antonym}},
+       {% endif %}
        {% endfor %}</h3>
    
 </div>
