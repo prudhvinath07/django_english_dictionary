@@ -1,23 +1,26 @@
 from django.shortcuts import render
 from PyDictionary import PyDictionary
-
-# Create your views here
-
+from wordhoard import Antonyms
+#from wordhoard import Definitions
+from wordhoard import Synonyms
 
 def index(request):
     return render(request, 'index.html')
-
 
 def word(request):
     search = request.GET.get('search')
     dictionary = PyDictionary()
 
-    meaning = dictionary.meaning(search)
-    synonyms = dictionary.synonym(search)
-    antonyms = dictionary.antonym(search)
+    antonym = Antonyms(search)
+    antonyms = antonym.find_antonyms()
 
+    synonym = Synonyms(search)
+    synonyms = synonym.find_synonyms()
+
+    meaning = dictionary.meaning(search)
+  
     context = {
-        'meaning': meaning['Noun'][0],
+        'meaning': meaning, 
         'synonyms': synonyms,
         'antonyms': antonyms
     }
