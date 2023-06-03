@@ -20,6 +20,7 @@ def word(request):
     meaning = dictionary.meaning(search)
   
     context = {
+        'Search' : search,
         'meaning': meaning, 
         'synonyms': synonyms,
         'antonyms': antonyms
